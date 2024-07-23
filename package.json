@@ -1,0 +1,26 @@
+{
+  "name": "akeyless-custom-server-ui-rotate",
+  "version": "1.0.0",
+  "description": "Automating the process of rotating credentials on a website using the Akeyless Custom Rotator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akeyless-community/akeyless-custom-server-ui-rotate.git"
+  },
+  "author": "Chris Gruel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akeyless-community/akeyless-custom-server-ui-rotate/issues"
+  },
+  "homepage": "https://github.com/akeyless-community/akeyless-custom-server-ui-rotate#readme",
+  "dependencies": {
+    "@puppeteer/replay": "^3.0.0",
+    "axios": "^1.7.2",
+    "express": "^4.19.2",
+    "generate-password": "^1.7.1",
+    "puppeteer": "^22.13.1"
+  }
+}
