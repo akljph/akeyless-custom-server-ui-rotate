@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - k8s/deployment.yml
+  - k8s/service.yml
+  ## Uncomment if you want to use an ingress
+  # - k8s/ingress.yml
+
+secretGenerator:
+  - name: akeyless-custom-ui-rotator-secrets
+    literals:
+      ## Place the Gateway Admin Access ID here of the ONLY Gateway that will be allowed to trigger this custom server
+      # - GW_ACCESS_ID=p-om5l3****jjk
+      - GW_ACCESS_ID=p-om5l3wrg1jjk
+
+# Optionally, you can add a namespace
+# namespace: your-namespace
+
+# If you want to append a hash to the secret name to force updates when the secret changes
+generatorOptions:
+  disableNameSuffixHash: true

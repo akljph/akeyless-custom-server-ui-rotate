@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akeyless-custom-ui-rotator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akeyless-custom-ui-rotator
+  template:
+    metadata:
+      labels:
+        app: akeyless-custom-ui-rotator
+    spec:
+      containers:
+        - name: akeyless-custom-ui-rotator
+          image: devorbitus/akeyless-custom-ui-rotator:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: GW_ACCESS_ID
+              valueFrom:
+                secretKeyRef:
+                  name: akeyless-custom-ui-rotator-secrets
+                  key: GW_ACCESS_ID
+            - name: LOG_LEVEL
+              value: "debug" # Set to "info" in production
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /ready
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 30
