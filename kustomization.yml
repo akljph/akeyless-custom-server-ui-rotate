@@ -12,7 +12,7 @@ secretGenerator:
     literals:
       ## Place the Gateway Admin Access ID here of the ONLY Gateway that will be allowed to trigger this custom server
       # - GW_ACCESS_ID=p-om5l3****jjk
-      - GW_ACCESS_ID=p-om5l3wrg1jjk
+      - GW_ACCESS_ID=p-r0a3ldom50w3am
 
 # Optionally, you can add a namespace
 # namespace: your-namespace
